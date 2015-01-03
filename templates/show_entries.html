@@ -1,0 +1,37 @@
+{% extends "layout.html" %}
+{% block body %}
+{% if session.logged_in %}
+<form action="{{ url_for('add_entry') }}" method=post class=add-entry>
+      <dl>
+        <dt>First Name:
+        <dd><input type=text size=30 name=fName>
+	<dt>Last Name:
+	<dd><input type=text size=30 name=lName>
+	<dt>Title:
+	<dd><input type=text size=30 name=title>
+	<dt>Cell:
+	<dd><input type=tel size=30 name=cell>
+	<dt>Primary Contact:
+	<dd><input type=tel size=30 name=primaryContactNum>
+	<dt>Secondary Contact: 
+	<dd><input type=tel size=30 name=secondaryContactNum>
+	<dt>Email:
+	<dd><input type=email size=30 name=email>
+        <dd><input type=submit value=Submit>
+      </dl>
+    </form>
+{% endif %}
+<ul class=entries>
+  {% for entry in entries %}
+    <li>{{ entry.fName }}
+    <li>{{ entry.lName }}
+    <li>{{ entry.title }}
+    <li>{{ entry.cell }}
+    <li>{{ entry.primaryContactNum }}
+    <li>{{ entry.secondaryContactNum }}
+    <li>{{ entry.email }}
+  {% else %}
+    <li><em>Unbelievable.  No entries here so far</em>
+  {% endfor %}
+</ul>
+{% endblock %}
